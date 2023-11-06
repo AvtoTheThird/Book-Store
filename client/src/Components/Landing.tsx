@@ -38,9 +38,9 @@ function Landing() {
             <p style={{ fontSize: "20px", fontWeight: "100" }}>
               ადვილად მოძებნე და შეიძინე წიგნები სხვა კითხვის მოყვარულებისგან
             </p>
-            <button className="button-86" role="button">
+            <a href="/Body" className="button-86" role="button">
               LESGO{" "}
-            </button>
+            </a>
           </h1>
         </div>
         <div className="gela" style={{ width: "50rem", height: "100%" }}>
