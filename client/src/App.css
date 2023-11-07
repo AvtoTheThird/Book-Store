@@ -157,6 +157,8 @@ html {
   margin-top: 15px;
 }
 .books {
+  margin-top: 2rem;
+
   gap: 5vh;
   display: flex;
   justify-content: center;
@@ -164,7 +166,7 @@ html {
   flex-wrap: wrap;
 }
 .book {
-  margin-top: 3rem;
+  /* padding-top: 3rem; */
   /* width: 10rem; */
   background-color: white;
   border-radius: 15px;
@@ -376,4 +378,9 @@ input[type="text"] {
 }
 a {
   all: unset;
+}
+a:hover {
+  transition: all 0.2s ease-in-out;
+
+  transform: scale(1.05);
 }

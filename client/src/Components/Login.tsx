@@ -1,17 +1,59 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Axios from "axios";
+import { Navigate } from "react-router-dom";
 function Login() {
   const [login, setLogin] = useState(true);
   const [RegUserName, setRegUserName] = useState("");
   const [RegPassword, setRegPassword] = useState("");
+
+  const [LoginUserName, setLoginUserName] = useState("");
+  const [LoginPassword, setLoginPassword] = useState("");
+
+  const [redirect, setRedirect] = useState(false);
+
   const [phone, setPhone] = useState("");
-  function register() {
-    Axios.post("http://localhost:4000/register", {
-      username: RegUserName,
-      password: RegPassword,
-      phone: phone,
-    }).then();
+  function registerFunc() {
+    Axios.post(
+      "http://localhost:4000/register",
+      {
+        username: RegUserName,
+        password: RegPassword,
+        phone: phone,
+      },
+      { withCredentials: true }
+    ).then((res) => {
+      if (res.status != 200) {
+        alert("something went wrong, try again later");
+      } else {
+        alert("user registered");
+      }
+
+      console.log(res);
+    });
+  }
+
+  function loginFunc() {
+    Axios.post(
+      "http://localhost:4000/login",
+      {
+        username: LoginUserName,
+        password: LoginPassword,
+      },
+      { withCredentials: true }
+    ).then((res) => {
+      // console.log(res);
+
+      if (res.data == "ok") {
+        setRedirect(true);
+      } else if (res.status == 400) {
+        alert("wrong credentials");
+      }
+    });
+  }
+
+  if (redirect) {
+    return <Navigate to={"/Body"} />;
   }
   return (
     <>
@@ -34,11 +76,29 @@ function Login() {
         {login ? (
           <div>
             <p>login</p>
-            <input type="text" name="" id="" placeholder="username" />
+            <input
+              onChange={(e) => {
+                setLoginUserName(e.target.value);
+              }}
+              type="text"
+              name=""
+              id=""
+              placeholder="username"
+            />
             <p>password</p>
-            <input type="text" name="" id="" placeholder="password" />
+            <input
+              onChange={(e) => {
+                setLoginPassword(e.target.value);
+              }}
+              type="text"
+              name=""
+              id=""
+              placeholder="password"
+            />
             <br />
-            <button className="button-28">login</button>
+            <button onClick={loginFunc} className="button-28">
+              login
+            </button>
           </div>
         ) : (
           <div>
@@ -73,7 +133,7 @@ function Login() {
               placeholder="555666777"
             />
             <br />
-            <button onClick={register} className="button-28">
+            <button onClick={registerFunc} className="button-28">
               register
             </button>
           </div>

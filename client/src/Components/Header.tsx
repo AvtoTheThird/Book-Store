@@ -1,6 +1,29 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
+import Axios from "axios";
 function Header() {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    Axios.get("http://localhost:4000/profile", {
+      withCredentials: true,
+    }).then((res) => {
+      setUsername(res.data.username);
+      console.log(username);
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:4000/profile", {
+  //     credentials: "include",
+  //   }).then();
+  // }, []);
+
+  function logout() {
+    Axios.post("http://localhost:4000/logout", {}, { withCredentials: true });
+    setUsername("");
+  }
   return (
     <header>
       <div className="Info">
@@ -13,9 +36,13 @@ function Header() {
           <h3 style={{ paddingTop: "0.7rem" }}>მაღაზია</h3>
         </a>
         <h3 style={{ paddingTop: "0.7rem" }}>
-          <a href="/Login">შესვლა</a>
+          {username == "" ? (
+            <a href="/Login">შესვლა</a>
+          ) : (
+            <a onClick={logout}>gamosvla</a>
+          )}
         </h3>
-        <h3 style={{ paddingTop: "0.7rem" }}>ჩვენს შესახებ</h3>
+        <h3 style={{ paddingTop: "0.7rem" }}>{username}</h3>
 
         <div>
           {" "}

@@ -14,6 +14,9 @@ function Body() {
         <Book />
         <Book />
         <Book />
+        <Book />
+        <Book />
+        <Book />
       </div>
     </>
   );
