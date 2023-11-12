@@ -12,7 +12,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = "1sd5g8as33d5we1gsd56sdf1";
 
 const UserModel = require("./models/User");
-
+const bookModel = require("./models/Book");
 mongoose.connect(
   "mongodb+srv://avtonariashvili:K7lEk6HgvC7M1Sbt@cluster0.pvsqwrq.mongodb.net/?retryWrites=true&w=majority"
 );
@@ -32,6 +32,19 @@ app.post("/register", async (req, res) => {
     res.json(newUser);
   } catch (error) {
     res.status(400).json(error);
+  }
+});
+
+app.post("/CreateBook", async (req, res) => {
+  try {
+    const BookData = req.body;
+    // console.log(BookData);
+    const newBook = await new bookModel(BookData);
+    await newBook.save();
+    res.json("ok");
+  } catch (error) {
+    res.json(error);
+    console.log(error);
   }
 });
 
@@ -62,6 +75,12 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
+});
+
+app.get("/getBooks", async (req, res) => {
+  const books = await bookModel.find({});
+  res.json(books);
+  // console.log(books);
 });
 
 app.listen(4000);

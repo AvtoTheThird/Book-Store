@@ -10,15 +10,8 @@ function Header() {
       withCredentials: true,
     }).then((res) => {
       setUsername(res.data.username);
-      console.log(username);
     });
   }, []);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/profile", {
-  //     credentials: "include",
-  //   }).then();
-  // }, []);
 
   function logout() {
     Axios.post("http://localhost:4000/logout", {}, { withCredentials: true });
@@ -39,23 +32,19 @@ function Header() {
           {username == "" ? (
             <a href="/Login">შესვლა</a>
           ) : (
-            <a onClick={logout}>gamosvla</a>
-          )}
-        </h3>
-        <h3 style={{ paddingTop: "0.7rem" }}>
-          {
             <div className="dropdown">
               <button className="dropbtn">
                 <h3>{username}</h3>
               </button>
               <div className="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="/CreateBook">add book</a>
-                <a onClick={logout}>gamosvla</a>
+                <a href="#">ჩემი წიგნები</a>
+                <a href="/CreateBook">წიგნის დამატება</a>
+                <a onClick={logout}>გამოსვლა</a>
               </div>
             </div>
-          }
+          )}
         </h3>
+        <h3 style={{ paddingTop: "0.7rem" }}>{}</h3>
 
         <div>
           {" "}

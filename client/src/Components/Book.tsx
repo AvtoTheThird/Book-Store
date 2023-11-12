@@ -1,15 +1,12 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-import BookFoto from "../../fotos/71jLBXtWJWL._AC_UF1000,1000_QL80_.jpg";
+function Book(props: any) {
+  console.log(props);
 
-function func() {
-  return <Navigate to={"/BookDetails"} />;
-}
-function Book() {
   return (
     <div className="books">
-      <a href="/BookDetails" style={{}}>
+      <a href="/BookDetails">
         <div className="book">
           <p
             style={{
@@ -19,12 +16,12 @@ function Book() {
               padding: "5px",
             }}
           >
-            იყიდება
+            {props.dealType}
           </p>
-          <img style={{ height: "20rem" }} src={BookFoto} alt="" />
-          <h2>title</h2>
-          <h3>author</h3>
-          <h1>price</h1>
+          <img style={{ height: "20rem" }} src={props.image} alt="" />
+          <h2>{props.name}</h2>
+          <h3>{props.author}</h3>
+          <h1>{props.price}ლ</h1>
         </div>{" "}
       </a>
     </div>

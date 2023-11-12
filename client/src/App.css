@@ -48,7 +48,7 @@ header {
     rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 }
 .landing-image {
-  width: 30rem;
+  width: 40rem;
   /* border-radius: 74% 26% 49% 51% / 65% 44% 56% 35%; */
   background-image: url(../fotos/blob.png);
   background-size: cover;
@@ -145,7 +145,7 @@ html {
   background-color: #8c8372;
   border-radius: 41% 59% 83% 17% / 32% 65% 40% 68%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  scale: 80%;
+  /* scale: 80%; */
 
   width: 50rem;
   height: 100%;
@@ -423,4 +423,8 @@ a:hover {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.disabled-input {
+  pointer-events: none;
+  background-color: grey;
 }

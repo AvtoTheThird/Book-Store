@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const User = require("./User");
-const roomSchema = new mongoose.Schema({
+const BookSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
+
+  image: { type: String, required: true },
 
   name: {
     type: String,
@@ -25,5 +27,5 @@ const roomSchema = new mongoose.Schema({
   description: { type: String },
 });
 
-const roomModel = mongoose.model("Room", roomSchema);
-module.exports = roomModel;
+const bookModel = mongoose.model("Book", BookSchema);
+module.exports = bookModel;

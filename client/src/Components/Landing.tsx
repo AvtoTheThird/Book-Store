@@ -14,13 +14,14 @@ function Landing() {
         style={{
           //   backgroundColor: "#8C8372",
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "space-evenly",
           height: "70vh",
           alignItems: "center",
           color: "#26130D",
         }}
       >
-        <div style={{ width: "50rem", scale: "80%" }}>
+        <div style={{ width: "50rem" }}>
           <h1
             style={{
               fontWeight: "900",
