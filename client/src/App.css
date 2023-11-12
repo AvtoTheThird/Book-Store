@@ -27,7 +27,7 @@ header {
 .body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
-  max-width: 1500px;
+  max-width: 75rem;
   background: rgb(94, 140, 106);
   background: linear-gradient(
     180deg,
@@ -48,9 +48,13 @@ header {
     rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 }
 .landing-image {
-  border-radius: 20% 80% 8% 92% / 71% 8% 92% 29%;
-  height: 100%;
-  width: 40rem;
+  width: 30rem;
+  /* border-radius: 74% 26% 49% 51% / 65% 44% 56% 35%; */
+  background-image: url(../fotos/blob.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-right: 3rem;
+  /* background-color: #26130d; */
 }
 
 html {
@@ -141,7 +145,10 @@ html {
   background-color: #8c8372;
   border-radius: 41% 59% 83% 17% / 32% 65% 40% 68%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  scale: 90%;
+  scale: 80%;
+
+  width: 50rem;
+  height: 100%;
 }
 .social-proofing {
   width: 10rem;
@@ -383,4 +390,37 @@ a:hover {
   transition: all 0.2s ease-in-out;
 
   transform: scale(1.05);
+}
+
+.dropbtn {
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

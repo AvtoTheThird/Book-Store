@@ -42,7 +42,20 @@ function Header() {
             <a onClick={logout}>gamosvla</a>
           )}
         </h3>
-        <h3 style={{ paddingTop: "0.7rem" }}>{username}</h3>
+        <h3 style={{ paddingTop: "0.7rem" }}>
+          {
+            <div className="dropdown">
+              <button className="dropbtn">
+                <h3>{username}</h3>
+              </button>
+              <div className="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="/CreateBook">add book</a>
+                <a onClick={logout}>gamosvla</a>
+              </div>
+            </div>
+          }
+        </h3>
 
         <div>
           {" "}

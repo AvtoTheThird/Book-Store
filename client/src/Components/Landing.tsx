@@ -20,7 +20,7 @@ function Landing() {
           color: "#26130D",
         }}
       >
-        <div style={{ width: "50rem" }}>
+        <div style={{ width: "50rem", scale: "80%" }}>
           <h1
             style={{
               fontWeight: "900",
@@ -43,12 +43,11 @@ function Landing() {
             </a>
           </h1>
         </div>
-        <div className="gela" style={{ width: "50rem", height: "100%" }}>
+        <div>
           <img
             className="landing-image"
             src={Book}
             alt="wingebis gacvlis foto"
-            style={{ paddingLeft: "30px" }}
           />
         </div>
       </div>
