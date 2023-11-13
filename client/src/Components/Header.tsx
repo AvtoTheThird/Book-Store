@@ -37,9 +37,11 @@ function Header() {
                 <h3>{username}</h3>
               </button>
               <div className="dropdown-content">
-                <a href="#">ჩემი წიგნები</a>
+                <a href="/MyBooks">ჩემი წიგნები</a>
                 <a href="/CreateBook">წიგნის დამატება</a>
-                <a onClick={logout}>გამოსვლა</a>
+                <a href="/Landing" onClick={logout}>
+                  გამოსვლა
+                </a>
               </div>
             </div>
           )}

@@ -3,21 +3,32 @@ import { useState } from "react";
 import Header from "./Header";
 import axios from "axios";
 // import FileBase64 from "react-file-base64";
+import imageCompression from "browser-image-compression";
 
 function CreateBook() {
-  function convertToBase64(e: any) {
-    console.log(e);
+  async function convertToBase64(e: any) {
+    const imageFile = e.target.files[0];
+
+    const options = {
+      maxSizeMB: 0.05,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+    const compressedFile = await imageCompression(imageFile, options);
+
     var reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(compressedFile);
     reader.onload = () => {
       console.log(reader.result);
       var x: any = reader.result;
       setImg(x);
     };
+
     reader.onerror = (error) => {
       console.log("err:", error);
     };
   }
+
   const [gayidva, setGayidva] = useState(false);
   const [gacvla, setGacvla] = useState(false);
   const [img, setImg] = useState("");
@@ -27,6 +38,8 @@ function CreateBook() {
   const [price, setPrice] = useState("");
   const [location, setLocation] = useState("");
   const [coverType, setCoverType] = useState("");
+  const [language, setLanguage] = useState("");
+
   const [description, setDescription] = useState("");
   const [userID, setUserId] = useState("");
   var BookData = {
@@ -38,6 +51,7 @@ function CreateBook() {
     price: price,
     location: location,
     coverType: coverType,
+    language: language,
     description: description,
   };
   console.log(BookData);
@@ -173,6 +187,18 @@ function CreateBook() {
           <input
             onChange={(e) => {
               setCoverType(e.target.value);
+            }}
+            type="text"
+            placeholder=""
+            name="yda"
+            id="yda"
+          />
+        </div>
+        <div className="smth">
+          <label htmlFor="ena">წიგნის ენა</label>
+          <input
+            onChange={(e) => {
+              setLanguage(e.target.value);
             }}
             type="text"
             placeholder=""

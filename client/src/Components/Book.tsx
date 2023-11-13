@@ -1,12 +1,16 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Book(props: any) {
-  console.log(props);
-
+  const history = useNavigate();
+  const location = useLocation();
+  const goToDetails = () => {
+    history("/BookDetails", { state: { props } });
+  };
   return (
     <div className="books">
-      <a href="/BookDetails">
+      <a onClick={() => goToDetails()}>
         <div className="book">
           <p
             style={{

@@ -7,6 +7,7 @@ import CreateBook from "./Components/CreateBook";
 import Login from "./Components/Login";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MyBooks from "./Components/MyBooks";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/BookDetails" element={<BookDetails />} />
           <Route path="/CreateBook" element={<CreateBook />} />
+          <Route path="/MyBooks" element={<MyBooks />} />
         </Routes>
 
         {/* <BookDetails /> */}

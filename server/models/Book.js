@@ -20,9 +20,12 @@ const BookSchema = new mongoose.Schema({
 
   dealType: { type: String, required: true },
   price: { type: String },
+  phone: { type: String },
+
   location: { type: String, required: true },
 
   coverType: { type: String, required: true },
+  language: { type: String, required: true },
 
   description: { type: String },
 });
