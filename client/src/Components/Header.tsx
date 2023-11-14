@@ -1,4 +1,5 @@
 import React from "react";
+import downarrow from "../../fotos/down-arrow.svg";
 import { useState, useEffect } from "react";
 import "../App.css";
 import Axios from "axios";
@@ -34,12 +35,15 @@ function Header() {
           ) : (
             <div className="dropdown">
               <button className="dropbtn">
-                <h3>{username}</h3>
+                <h3>
+                  {username} <br />
+                  <img style={{ width: "20px" }} src={downarrow} alt="" />
+                </h3>
               </button>
               <div className="dropdown-content">
-                <a href="/MyBooks">ჩემი წიგნები</a>
                 <a href="/CreateBook">წიგნის დამატება</a>
-                <a href="/Landing" onClick={logout}>
+                <a href="/MyBooks">ჩემი წიგნები</a>
+                <a href="/" onClick={logout}>
                   გამოსვლა
                 </a>
               </div>

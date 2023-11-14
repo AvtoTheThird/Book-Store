@@ -38,7 +38,10 @@ app.post("/register", async (req, res) => {
 app.post("/CreateBook", async (req, res) => {
   try {
     const BookData = req.body;
-    // console.log(BookData);
+
+    bookOwner = BookData.owner;
+    const owner = await UserModel.findById(bookOwner);
+    BookData.phone = owner.phone;
     const newBook = await new bookModel(BookData);
     await newBook.save();
     res.json("ok");
@@ -67,10 +70,12 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
+
   jtw.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
     res.json(info);
   });
+  console.log(error);
 });
 
 app.post("/logout", (req, res) => {
@@ -80,20 +85,7 @@ app.post("/logout", (req, res) => {
 app.get("/getBooks", async (req, res) => {
   const books = await bookModel.find({});
 
-  try {
-    for (const book of books) {
-      bookOwner = book.owner;
-
-      const owner = await UserModel.findById(bookOwner);
-      books[0].phone = owner.phone;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  // console.log(books);
-
   res.json(books);
-  // console.log(books[0]);
 });
 app.get("/usersBooks", async (req, res) => {
   const { token } = req.cookies;
@@ -102,10 +94,19 @@ app.get("/usersBooks", async (req, res) => {
     var id = info.id;
     const foundBooks = await bookModel.find({ owner: id });
     res.json(foundBooks);
-
-    // console.log(foundBooks);
   });
-  // const foundBooks = await bookModel.find({ owner: id });
-  // res.json("ok");
 });
+
+app.delete("/deleteBook/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    await bookModel.findByIdAndDelete(id).exec();
+    res.json("ok");
+  } catch (error) {
+    console.log(error);
+    res.json("okn't");
+  }
+});
+
 app.listen(4000);

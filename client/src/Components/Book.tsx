@@ -15,7 +15,7 @@ function Book(props: any) {
           <p
             style={{
               position: "absolute",
-              backgroundColor: "white",
+              backgroundColor: "#11141D",
               borderRadius: "15px",
               padding: "5px",
             }}

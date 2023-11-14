@@ -18,7 +18,7 @@ function Landing() {
           justifyContent: "space-evenly",
           height: "70vh",
           alignItems: "center",
-          color: "#26130D",
+          color: "#CFCFCF",
         }}
       >
         <div style={{ width: "50rem" }}>
@@ -26,12 +26,10 @@ function Landing() {
             style={{
               fontWeight: "900",
               fontSize: "40px",
-              backgroundColor: "#8C8372",
+              backgroundColor: "#2B324A",
               padding: "40px",
               width: "40rem",
               borderRadius: "20px",
-              boxShadow:
-                "rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px",
             }}
           >
             იყიდე, გაყიდე და გაცვალე <br />
@@ -60,7 +58,7 @@ function Landing() {
           color: "#26130D",
         }}
       >
-        <div className="social-proofing">
+        {/* <div className="social-proofing">
           <img style={{ width: "60px" }} src={user} alt="" />
           <h2>
             700 <br /> მომხმარებელი{" "}
@@ -78,7 +76,7 @@ function Landing() {
           <h2>
             800 <br /> გაყიდული წიგნი{" "}
           </h2>
-        </div>
+        </div> */}
       </div>
     </>
   );

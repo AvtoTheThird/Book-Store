@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import { useState, useEffect } from "react";
-
+import BookEditDelete from "./BookEditDelete";
 import Axios from "axios";
-import Book from "./Book";
+import empty from "../../fotos/Empty-amico.svg";
 function MyBooks() {
   const [books, setBooks] = useState([]);
 
@@ -14,20 +14,28 @@ function MyBooks() {
       setBooks(res.data);
     });
   }, []);
-  console.log(books);
+  console.log(books.length);
 
   return (
     <div>
       <Header />
-      <div className="body">
-        {books != undefined ? (
-          books.map(function (book: any) {
-            return <Book {...book} />;
-          })
-        ) : (
-          <h1>LOADIG</h1>
-        )}
-      </div>
+      {books.length > 0 ? (
+        <div className="body">
+          {books != undefined ? (
+            books.map(function (book: any) {
+              return <BookEditDelete {...book} />;
+            })
+          ) : (
+            <h1>LOADIG</h1>
+          )}
+        </div>
+      ) : (
+        <div className="body" style={{ display: "block" }}>
+          {" "}
+          <h1 style={{ color: "white" }}>შენ არ გაქვს აქტიური განცხადება</h1>
+          <img style={{ width: "45%" }} src={empty} alt="" />
+        </div>
+      )}
     </div>
   );
 }

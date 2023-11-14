@@ -4,7 +4,7 @@ import Axios from "axios";
 import { Navigate } from "react-router-dom";
 function Login() {
   const [login, setLogin] = useState(true);
-  const [RegUserName, setRegUserName] = useState("");
+  const [RegUserName, setRegUserName] = useState("   ");
   const [RegPassword, setRegPassword] = useState("");
 
   const [LoginUserName, setLoginUserName] = useState("");
@@ -75,7 +75,7 @@ function Login() {
 
         {login ? (
           <div>
-            <p>login</p>
+            <p style={{ color: "#CFCFCF" }}>login</p>
             <input
               onChange={(e) => {
                 setLoginUserName(e.target.value);
@@ -85,12 +85,12 @@ function Login() {
               id=""
               placeholder="username"
             />
-            <p>password</p>
+            <p style={{ color: "#CFCFCF" }}>password</p>
             <input
               onChange={(e) => {
                 setLoginPassword(e.target.value);
               }}
-              type="text"
+              type="password"
               name=""
               id=""
               placeholder="password"
@@ -102,7 +102,8 @@ function Login() {
           </div>
         ) : (
           <div>
-            <p>user name</p>
+            <p style={{ color: "#CFCFCF" }}>user name</p>
+
             <input
               onChange={(e) => {
                 setRegUserName(e.target.value);
@@ -112,17 +113,18 @@ function Login() {
               id=""
               placeholder="username"
             />
-            <p>password</p>
+            {}
+            <p style={{ color: "#CFCFCF" }}>password</p>
             <input
               onChange={(e) => {
                 setRegPassword(e.target.value);
               }}
-              type="text"
+              type="password"
               name=""
               id=""
               placeholder="password"
             />
-            <p>phone number</p>
+            <p style={{ color: "#CFCFCF" }}>phone number</p>
             <input
               onChange={(e) => {
                 setPhone(e.target.value);
