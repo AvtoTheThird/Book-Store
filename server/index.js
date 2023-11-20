@@ -22,7 +22,8 @@ app.get("/test", (req, res) => {
 
 app.post("/register", async (req, res) => {
   try {
-    const user = req.body;
+    const user = req.body.data;
+
     const newUser = await new UserModel({
       username: user.username,
       password: bcrypt.hashSync(user.password, salt),
@@ -71,11 +72,11 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
 
+  console.log(token);
   jtw.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
     res.json(info);
   });
-  console.log(error);
 });
 
 app.post("/logout", (req, res) => {
