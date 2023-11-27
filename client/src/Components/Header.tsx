@@ -2,30 +2,39 @@ import React from "react";
 import downarrow from "../../fotos/down-arrow.svg";
 import { useState, useEffect } from "react";
 import "../App.css";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import Axios from "axios";
 function Header() {
+  const history = useNavigate();
+  const location = useLocation();
   const [username, setUsername] = useState("");
-
+  const [search, setSearch] = useState("");
   useEffect(() => {
     Axios.get("http://localhost:4000/profile", {
       withCredentials: true,
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       setUsername(res.data.username);
     });
   }, []);
+  // console.log(search);
 
   function logout() {
     Axios.post("http://localhost:4000/logout", {}, { withCredentials: true });
     setUsername("");
   }
+  function Search() {
+    // Axios.post("http://localhost:4000/search", { search });
+
+    history("/SearchResults", { state: { search } });
+    window.location.reload();
+  }
   return (
     <header>
       <div className="Info">
         <a href="/">
-          <h1 style={{ textAlign: "center", paddingBottom: "1rem" }}>
-            მეორადი წიგნების მაღაზია
-          </h1>
+          <h1>მეორადი წიგნების მაღაზია</h1>
         </a>
         <a href="/Body">
           <h3 style={{ paddingTop: "0.7rem" }}>მაღაზია</h3>
@@ -62,11 +71,14 @@ function Header() {
               width: "9rem",
               borderRadius: "0",
             }}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
             type="text"
             name=""
             id="serch"
           />
-          <button>serch</button>
+          <button onClick={Search}>serch</button>
         </div>
       </div>
     </header>

@@ -22,7 +22,7 @@ function Book(props: any) {
           >
             {props.dealType}
           </p>
-          <img style={{ height: "20rem" }} src={props.image} alt="" />
+          <img src={props.image} alt="" />
           <h2>{props.name}</h2>
           <h3>{props.author}</h3>
           <h1>{props.price}ლ</h1>

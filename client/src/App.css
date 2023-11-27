@@ -26,16 +26,25 @@ header {
   background-color: #11141d;
   margin: 0 auto;
   text-align: center;
-
   gap: 5vh;
   display: flex;
   justify-content: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-
+.mock-body {
+  color: #cfcfcf;
+  border-radius: 5px;
+  max-width: 75rem;
+  background-color: #11141d;
+  margin: 0 auto;
+  text-align: center;
+}
+span {
+  color: rgb(240, 105, 105);
+}
 .landing-image {
-  width: 40rem;
+  width: 40vw;
   /* border-radius: 74% 26% 49% 51% / 65% 44% 56% 35%; */
   background-image: url(../fotos/blob.png);
   background-size: cover;
@@ -152,8 +161,6 @@ html {
   margin-top: 15px;
 }
 .books {
-  margin-top: 2rem;
-  max-width: 2vw;
   gap: 5vh;
   display: flex;
   justify-content: center;
@@ -161,11 +168,19 @@ html {
   flex-wrap: wrap;
 }
 .book {
-  color: rgb(207, 207, 207);
-  /* padding-top: 3rem; */
-  /* width: 10rem; */
+  width: 250px; /* Set your desired width */
+  height: 400px; /* Set your desired height */
+  position: relative;
+  overflow: hidden;
   background-color: #2b324a;
+  color: rgb(207, 207, 207);
   border-radius: 15px;
+}
+
+.book img {
+  height: 75%;
+  object-fit: cover;
+  object-position: center;
 }
 /* 11141d */
 .BookDetailPage {
@@ -192,6 +207,7 @@ input[type="text"] {
   width: 40rem;
   height: 2rem;
   border-radius: 15px;
+  margin-bottom: 2vh;
 }
 
 input[type="password"] {
@@ -383,10 +399,11 @@ input[type="password"] {
 }
 a {
   all: unset;
+  cursor: pointer;
 }
+
 a:hover {
   transition: all 0.2s ease-in-out;
-
   transform: scale(1.05);
 }
 

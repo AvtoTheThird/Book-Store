@@ -11,6 +11,7 @@ function Body() {
       setBooks(res.data);
     });
   }, []);
+  console.log(books);
 
   return (
     <>

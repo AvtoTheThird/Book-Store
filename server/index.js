@@ -110,4 +110,25 @@ app.delete("/deleteBook/:id", async (req, res) => {
   }
 });
 
+app.post("/search", async (req, res) => {
+  const searchTerm = req.body.data;
+  console.log(searchTerm);
+  try {
+    const searchResults = await bookModel.aggregate([
+      {
+        $match: {
+          $or: [
+            { name: { $regex: searchTerm, $options: "i" } },
+            { author: { $regex: searchTerm, $options: "i" } },
+          ],
+        },
+      },
+    ]);
+
+    res.status(200).json(searchResults);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.listen(4000);

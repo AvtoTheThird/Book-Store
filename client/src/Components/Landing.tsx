@@ -12,7 +12,7 @@ function Landing() {
       <div
         className="landing-1"
         style={{
-          //   backgroundColor: "#8C8372",
+          // backgroundColor: "#8C8372",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
@@ -21,14 +21,14 @@ function Landing() {
           color: "#CFCFCF",
         }}
       >
-        <div style={{ width: "50rem" }}>
+        <div style={{ width: "40vw" }}>
           <h1
             style={{
               fontWeight: "900",
               fontSize: "40px",
               backgroundColor: "#2B324A",
-              padding: "40px",
-              width: "40rem",
+              padding: "2vw",
+              // width: "40rem",
               borderRadius: "20px",
             }}
           >

@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type FormValues = {
   username: string;
@@ -43,8 +44,11 @@ function Login() {
         alert("wrong credentials");
       }
     });
+    history("/Body");
   }
+  const history = useNavigate();
 
+  // history("/SearchResults", { state: { search } });
   const form = useForm<FormValues>({
     defaultValues: {
       username: "",

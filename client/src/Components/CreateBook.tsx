@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Header from "./Header";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+
 // import FileBase64 from "react-file-base64";
 import imageCompression from "browser-image-compression";
 
@@ -39,7 +41,6 @@ function CreateBook() {
   const [location, setLocation] = useState("");
   const [coverType, setCoverType] = useState("");
   const [language, setLanguage] = useState("");
-
   const [description, setDescription] = useState("");
   const [userID, setUserId] = useState("");
   var BookData = {
@@ -54,11 +55,33 @@ function CreateBook() {
     language: language,
     description: description,
   };
-  console.log(BookData);
+  const areFieldsEmpty = () => {
+    // Check if any field is empty
+    if (
+      img === "" ||
+      (dealType === "იყიდება" && price === "") ||
+      (dealType === "იყიდება ან იცვლება" && price === "") ||
+      name === "" ||
+      author === "" ||
+      dealType === "" ||
+      location === "" ||
+      coverType === "" ||
+      language === ""
+    ) {
+      return true;
+    }
+    return false;
+  };
   function sendData() {
-    axios.post("http://localhost:4000/createBook", BookData);
+    if (areFieldsEmpty()) {
+      alert("შეავსეთ ყველა სავალდებულო ველი");
+    } else {
+      axios.post("http://localhost:4000/createBook", BookData);
+      history("/Body");
+    }
   }
-  // console.log(name);
+  const history = useNavigate();
+
   axios
     .get("http://localhost:4000/profile", {
       withCredentials: true,
@@ -82,6 +105,7 @@ function CreateBook() {
       {" "}
       <Header />
       <div className="CreateBook">
+        <label>წიგნის ფოტო</label>
         <input
           onChange={convertToBase64}
           type="file"
@@ -95,7 +119,9 @@ function CreateBook() {
           <img src={img} style={{ width: "100px" }} />
         )}
         <div className="smth">
-          <label htmlFor="name">წიგნის სახელი</label>
+          <label htmlFor="name">
+            წიგნის სახელი <span>*</span>
+          </label>
           <input
             onChange={(e) => {
               setName(e.target.value);
@@ -107,7 +133,9 @@ function CreateBook() {
           />
         </div>
         <div className="smth">
-          <label htmlFor="author">წიგნის ავტორი</label>
+          <label htmlFor="author">
+            წიგნის ავტორი<span>*</span>
+          </label>
           <input
             onChange={(e) => {
               setAuthor(e.target.value);
@@ -119,7 +147,9 @@ function CreateBook() {
           />
         </div>
         <div className="smth">
-          <p>გარიგების ტიპი:</p>
+          <p>
+            გარიგების ტიპი<span>*</span>:
+          </p>
           <p>
             გაყიდვა
             <input
@@ -147,7 +177,9 @@ function CreateBook() {
         </div>
         {gayidva ? (
           <div className="smth">
-            <label htmlFor="fasi">ფასი</label>
+            <label htmlFor="fasi">
+              ფასი<span>*</span>
+            </label>
             <input
               onChange={(e) => {
                 setPrice(e.target.value);
@@ -171,7 +203,9 @@ function CreateBook() {
           </div>
         )}
         <div className="smth">
-          <label htmlFor="regioni">ადგილმდებარეობა</label>
+          <label htmlFor="regioni">
+            ადგილმდებარეობა<span>*</span>
+          </label>
           <input
             onChange={(e) => {
               setLocation(e.target.value);
@@ -183,7 +217,9 @@ function CreateBook() {
           />
         </div>
         <div className="smth">
-          <label htmlFor="yda">ყდის ტიპი</label>
+          <label htmlFor="yda">
+            ყდის ტიპი<span>*</span>
+          </label>
           <input
             onChange={(e) => {
               setCoverType(e.target.value);
@@ -195,7 +231,9 @@ function CreateBook() {
           />
         </div>
         <div className="smth">
-          <label htmlFor="ena">წიგნის ენა</label>
+          <label htmlFor="ena">
+            წიგნის ენა<span>*</span>
+          </label>
           <input
             onChange={(e) => {
               setLanguage(e.target.value);
