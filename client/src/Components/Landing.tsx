@@ -21,17 +21,16 @@ function Landing() {
           color: "#CFCFCF",
         }}
       >
-        <div style={{ width: "40vw" }}>
-          <h1
-            style={{
-              fontWeight: "900",
-              fontSize: "40px",
-              backgroundColor: "#2B324A",
-              padding: "2vw",
-              // width: "40rem",
-              borderRadius: "20px",
-            }}
-          >
+        <div
+          style={{
+            fontWeight: "bold",
+            backgroundColor: "#2B324A",
+            padding: "2vw",
+            // width: "40rem",
+            borderRadius: "20px",
+          }}
+        >
+          <h1>
             იყიდე, გაყიდე და გაცვალე <br />
             მეორადიწიგნები ერთ სივრცეში
             <p style={{ fontSize: "20px", fontWeight: "100" }}>
@@ -49,34 +48,6 @@ function Landing() {
             alt="wingebis gacvlis foto"
           />
         </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "15rem",
-          color: "#26130D",
-        }}
-      >
-        {/* <div className="social-proofing">
-          <img style={{ width: "60px" }} src={user} alt="" />
-          <h2>
-            700 <br /> მომხმარებელი{" "}
-          </h2>
-        </div>
-        <div className="social-proofing">
-          <img style={{ width: "60px" }} src={book} alt="" />
-          <h2>
-            {" "}
-            999 <br /> განცხადება
-          </h2>
-        </div>
-        <div className="social-proofing">
-          <img style={{ width: "60px" }} src={sold} alt="" />
-          <h2>
-            800 <br /> გაყიდული წიგნი{" "}
-          </h2>
-        </div> */}
       </div>
     </>
   );
