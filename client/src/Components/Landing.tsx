@@ -37,7 +37,7 @@ function Landing() {
               ადვილად მოძებნე და შეიძინე წიგნები სხვა კითხვის მოყვარულებისგან
             </p>
             <a href="/Body" className="button-86" role="button">
-              LESGO{" "}
+              Let's Go{" "}
             </a>
           </h1>
         </div>

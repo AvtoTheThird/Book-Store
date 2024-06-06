@@ -8,6 +8,8 @@ function Book(props: any) {
   const goToDetails = () => {
     history("/BookDetails", { state: { props } });
   };
+  console.log(props);
+
   return (
     <div className="books">
       <a onClick={() => goToDetails()}>
@@ -25,8 +27,8 @@ function Book(props: any) {
           <img src={props.image} alt="" />
           <h2>{props.name}</h2>
           <h3>{props.author}</h3>
-          <h1>{props.price}ლ</h1>
-        </div>{" "}
+          {props.price == "" ? null : <h1>{props.price}ლ</h1>}
+        </div>
       </a>
     </div>
   );

@@ -13,6 +13,7 @@ type FormValues = {
 
   phone: string;
 };
+
 const schema = yup.object({
   username: yup.string().required("სავალდებულოა").min(3, "მინიმუმ 3 სიმბოლო"),
   password: yup.string().required("სავალდებულოა").min(8, "მინიმუმ 8 სიმბოლო"),

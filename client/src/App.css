@@ -20,7 +20,8 @@ h1 {
 .body {
   border-radius: 5px;
   max-width: 75vw;
-  background-color: #11141d;
+  background-color: rgba(17, 20, 29, 0.8);
+
   margin: 0 auto;
   text-align: center;
   gap: 5vh;
@@ -49,7 +50,16 @@ span {
   padding-right: 3rem;
   /* background-color: #26130d; */
 }
-
+.page-indexes {
+  border-radius: 5px;
+  max-width: 75vw;
+  background-color: #11141d;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
 html {
   --s: 50px;
   --c: #191b22;
@@ -166,7 +176,7 @@ html {
 }
 .book {
   width: 15rem; /* Set your desired width */
-  height: 25rem; /* Set your desired height */
+  height: 30rem; /* Set your desired height */
   position: relative;
   overflow: hidden;
   background-color: #2b324a;
@@ -190,13 +200,21 @@ html {
   flex-wrap: wrap;
 }
 .CreateBook {
-  color: #cfcfcf;
-  background-color: #11141d;
-  max-width: 75vw;
-  margin: 0 auto;
   display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #11141d;
+  max-width: 60vw;
+}
+.Fields {
+  color: #cfcfcf;
+
+  /* margin: 0 auto; */
+  /* display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; */
 }
 
 input[type="text"] {
@@ -207,7 +225,7 @@ input[type="text"] {
   margin-bottom: 2vh;
 }
 textarea {
-  width: 40vw;
+  width: 20vw;
 }
 input[type="search"] {
   background-color: #888;
@@ -230,8 +248,12 @@ input[type="password"] {
   border-radius: 15px;
 }
 .smth {
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
+}
+.smth input {
+  width: 30rem;
 }
 .login-register {
   margin: 0 auto;

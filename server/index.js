@@ -47,7 +47,9 @@ app.post("/CreateBook", async (req, res) => {
     await newBook.save();
     res.json("ok");
   } catch (error) {
-    res.json(error);
+    res
+      .status(422)
+      .json({ error: "Validation failed. Please enter valid data" });
     console.log(error);
   }
 });
@@ -72,7 +74,6 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
 
-  console.log(token);
   jtw.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
     res.json(info);
@@ -84,9 +85,20 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/getBooks", async (req, res) => {
-  const books = await bookModel.find({});
+  const PAGE_SIZE = 20; // Default number of items per page
+  const page = parseInt(req.query.page || "0");
+  const total = await bookModel.countDocuments({});
+  const posts = await bookModel
+    .find({})
+    .limit(PAGE_SIZE)
+    .skip(PAGE_SIZE * page);
+  res.json({
+    totalPages: Math.ceil(total / PAGE_SIZE),
+    posts,
+  });
+  // const books = await bookModel.find({});
 
-  res.json(books);
+  // res.json(books);
 });
 app.get("/usersBooks", async (req, res) => {
   const { token } = req.cookies;

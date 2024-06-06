@@ -19,23 +19,26 @@ function MyBooks() {
   return (
     <div>
       <Header />
-      {books.length > 0 ? (
-        <div className="body">
-          {books != undefined ? (
-            books.map(function (book: any) {
-              return <BookEditDelete {...book} />;
-            })
-          ) : (
-            <h1>LOADIG</h1>
-          )}
-        </div>
-      ) : (
-        <div className="body" style={{ display: "block" }}>
-          {" "}
-          <h1 style={{ color: "white" }}>შენ არ გაქვს აქტიური განცხადება</h1>
-          <img style={{ width: "45%" }} src={empty} alt="" />
-        </div>
-      )}
+      <div>
+        {books.length > 0 ? (
+          <div className="body">
+            <div></div>
+            {books != undefined ? (
+              books.map(function (book: any) {
+                return <BookEditDelete {...book} />;
+              })
+            ) : (
+              <h1>LOADIG</h1>
+            )}
+          </div>
+        ) : (
+          <div className="body" style={{ display: "block" }}>
+            {" "}
+            <h1 style={{ color: "white" }}>შენ არ გაქვს აქტიური განცხადება</h1>
+            <img style={{ width: "45%" }} src={empty} alt="" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
