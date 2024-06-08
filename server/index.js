@@ -74,10 +74,17 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
 
-  jtw.verify(token, secret, {}, (err, info) => {
-    if (err) throw err;
-    res.json(info);
-  });
+  if (!token) return res.status(401).json("unauthorized");
+  else {
+    jtw.verify(token, secret, {}, (err, info) => {
+      if (err) throw err;
+      res.json(info);
+    });
+  }
+  // jtw.verify(token, secret, {}, (err, info) => {
+  //   if (err) throw err;
+  //   res.json(info);
+  // });
 });
 
 app.post("/logout", (req, res) => {

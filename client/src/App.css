@@ -58,6 +58,7 @@ span {
   text-align: center;
   display: flex;
   justify-content: center;
+  gap: 1rem;
   padding-top: 25px;
 }
 html {
@@ -489,4 +490,13 @@ a:hover {
   font-size: 14px;
   font-weight: bolder;
   padding-bottom: 1rem;
+}
+.stepper-button {
+  background-color: #25376d;
+  border: none;
+  border-radius: 100%;
+  color: #cfcfcf;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
 }

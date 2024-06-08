@@ -15,7 +15,6 @@ function Header() {
     Axios.get("http://localhost:4000/profile", {
       withCredentials: true,
     }).then((res) => {
-      // console.log(res);
       setUsername(res.data.username);
     });
   }, []);

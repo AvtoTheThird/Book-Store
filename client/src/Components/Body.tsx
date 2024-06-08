@@ -17,7 +17,6 @@ function Body() {
         setNumberOfPages(totalPages);
       });
   }, [pageNumber]);
-
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
   };
@@ -35,6 +34,7 @@ function Body() {
   return (
     <>
       <Header />
+
       {books.length > 0 ? (
         <div className="body">
           {books != undefined ? (
@@ -48,19 +48,28 @@ function Body() {
       ) : (
         <div className="body" style={{ display: "block" }}>
           {" "}
-          <h1 style={{ color: "white" }}>ყველა წიგნი გაყიდულია</h1>
+          <h1 style={{ color: "white" }}>ინფორმაცია იტვირთება</h1>
           <img style={{ width: "45%" }} src={empty} alt="" />
         </div>
       )}
 
       <div className="page-indexes">
-        <button onClick={gotoPrevious}>Previous</button>
+        <button className="stepper-button" onClick={gotoPrevious}>
+          {" "}
+          {"<"}{" "}
+        </button>
         {pages.map((pageIndex) => (
-          <button key={pageIndex} onClick={() => setPageNumber(pageIndex)}>
+          <button
+            className="stepper-button"
+            key={pageIndex}
+            onClick={() => setPageNumber(pageIndex)}
+          >
             {pageIndex + 1}
           </button>
         ))}
-        <button onClick={gotoNext}>Next</button>
+        <button className="stepper-button" onClick={gotoNext}>
+          {">"}
+        </button>
       </div>
     </>
   );
