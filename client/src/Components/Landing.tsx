@@ -1,9 +1,5 @@
-import React from "react";
 import Header from "./Header";
 import Book from "../../fotos/Kids reading-amico.svg";
-import user from "../../fotos/user-regular.svg";
-import sold from "../../fotos/hand-holding-hand-solid.svg";
-import book from "../../fotos/book-open-solid.svg";
 
 function Landing() {
   return (

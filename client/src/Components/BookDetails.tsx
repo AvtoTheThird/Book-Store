@@ -1,10 +1,7 @@
-import React from "react";
 import Header from "./Header";
-import BookFoto from "../../fotos/71jLBXtWJWL._AC_UF1000,1000_QL80_.jpg";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function BookDetails() {
-  const history = useNavigate();
   const location = useLocation();
   // const id = location.state.id;
   const data = location.state.props;

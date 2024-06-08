@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Book from "./Book";
 import Header from "./Header";
 import empty from "../../fotos/Empty-amico.svg";
 
-import axios from "axios";
 function Body() {
   const [books, setBooks] = useState<any[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
-  const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
+  const pages = new Array(numberOfPages).fill(null).map((i) => i);
   useEffect(() => {
-    fetch(`http://localhost:4000/getBooks?page=${pageNumber}`)
+    fetch(`https://book-store-t1fe.onrender.com/getBooks?page=${pageNumber}`)
       .then((response) => response.json())
       .then(({ totalPages, posts }) => {
         setBooks(posts);
@@ -25,7 +24,7 @@ function Body() {
     setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
   };
   // useEffect(() => {
-  //   axios.get("http://localhost:4000/getBooks").then((res) => {
+  //   axios.get("https://book-store-t1fe.onrender.com/getBooks").then((res) => {
   //     setBooks(res.data);
   //   });
   // }, []);
@@ -38,7 +37,7 @@ function Body() {
       {books.length > 0 ? (
         <div className="body">
           {books != undefined ? (
-            books.map(function (book, i) {
+            books.map(function (book) {
               return <Book {...book} />;
             })
           ) : (

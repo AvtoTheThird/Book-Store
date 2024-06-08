@@ -1,10 +1,8 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Book(props: any) {
   const history = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const goToDetails = () => {
     history("/BookDetails", { state: { props } });
   };

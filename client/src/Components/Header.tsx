@@ -1,18 +1,16 @@
-import React from "react";
 import downarrow from "../../fotos/down-arrow.svg";
 import { useState, useEffect } from "react";
 import "../App.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import searchIcon from "../../fotos/search.png.png";
 import logo from "../../fotos/logo.png";
 import Axios from "axios";
 function Header() {
   const history = useNavigate();
-  const location = useLocation();
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState("");
   useEffect(() => {
-    Axios.get("http://localhost:4000/profile", {
+    Axios.get("https://book-store-t1fe.onrender.com/profile", {
       withCredentials: true,
     }).then((res) => {
       setUsername(res.data.username);
@@ -21,11 +19,15 @@ function Header() {
   // console.log(search);
 
   function logout() {
-    Axios.post("http://localhost:4000/logout", {}, { withCredentials: true });
+    Axios.post(
+      "https://book-store-t1fe.onrender.com/logout",
+      {},
+      { withCredentials: true }
+    );
     setUsername("");
   }
   function Search() {
-    // Axios.post("http://localhost:4000/search", { search });
+    // Axios.post("https://book-store-t1fe.onrender.com/search", { search });
 
     history("/SearchResults", { state: { search } });
     window.location.reload();

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import Axios from "axios";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   username: string;
@@ -32,7 +32,7 @@ function Login() {
 
   function loginFunc() {
     Axios.post(
-      "http://localhost:4000/login",
+      "https://book-store-t1fe.onrender.com/login",
       {
         username: LoginUserName,
         password: LoginPassword,
@@ -64,7 +64,7 @@ function Login() {
 
   const onSubmit = (data: FormValues) => {
     Axios.post(
-      "http://localhost:4000/register",
+      "https://book-store-t1fe.onrender.com/register",
       {
         data,
       },

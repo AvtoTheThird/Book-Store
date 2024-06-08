@@ -1,18 +1,15 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import tashIcons from "../../fotos/trash-can-regular.svg";
 import Axios from "axios";
 
 function Book(props: any) {
   const history = useNavigate();
-  const location = useLocation();
   const goToDetails = () => {
     history("/BookDetails", { state: { props } });
   };
 
   function deleteBook() {
-    Axios.delete(`http://localhost:4000/deleteBook/${props._id}`)
+    Axios.delete(`https://book-store-t1fe.onrender.com/deleteBook/${props._id}`)
       .then((res) => {
         if (res.data == "ok") alert(` ${props.name} წაიშალა`);
       })
