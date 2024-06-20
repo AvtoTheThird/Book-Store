@@ -9,7 +9,7 @@ function Book(props: any) {
   };
 
   function deleteBook() {
-    Axios.delete(`https://book-store-t1fe.onrender.com/deleteBook/${props._id}`)
+    Axios.delete(`http://localhost:4000/deleteBook/${props._id}`)
       .then((res) => {
         if (res.data == "ok") alert(` ${props.name} წაიშალა`);
       })

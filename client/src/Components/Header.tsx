@@ -10,7 +10,7 @@ function Header() {
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState("");
   useEffect(() => {
-    Axios.get("https://book-store-t1fe.onrender.com/profile", {
+    Axios.get("http://localhost:4000/profile", {
       withCredentials: true,
     }).then((res) => {
       setUsername(res.data.username);
@@ -19,16 +19,10 @@ function Header() {
   // console.log(search);
 
   function logout() {
-    Axios.post(
-      "https://book-store-t1fe.onrender.com/logout",
-      {},
-      { withCredentials: true }
-    );
+    Axios.post("http://localhost:4000/logout", {}, { withCredentials: true });
     setUsername("");
   }
   function Search() {
-    // Axios.post("https://book-store-t1fe.onrender.com/search", { search });
-
     history("/SearchResults", { state: { search } });
     window.location.reload();
   }

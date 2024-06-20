@@ -6,7 +6,7 @@ function Book(props: any) {
   const goToDetails = () => {
     history("/BookDetails", { state: { props } });
   };
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className="books">

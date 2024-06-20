@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../components/Header";
 import Book from "../../fotos/Kids reading-amico.svg";
 
 function Landing() {

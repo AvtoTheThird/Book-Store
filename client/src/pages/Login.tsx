@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./Header";
+import Header from "../components/Header";
 import Axios from "axios";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -16,7 +16,12 @@ type FormValues = {
 
 const schema = yup.object({
   username: yup.string().required("სავალდებულოა").min(3, "მინიმუმ 3 სიმბოლო"),
-  password: yup.string().required("სავალდებულოა").min(8, "მინიმუმ 8 სიმბოლო"),
+  password: yup
+    .string()
+    .required("სავალდებულოა")
+    .min(8, "მინიმუმ 8 სიმბოლო")
+    .matches(/[A-Z]/, "მინიმუმ 1 დიდი ასო")
+    .matches(/[0-9]/, "მინიმუმ 1 ციფრი"),
   phone: yup
     .string()
     .required("სავალდებულოა")
@@ -32,7 +37,7 @@ function Login() {
 
   function loginFunc() {
     Axios.post(
-      "https://book-store-t1fe.onrender.com/login",
+      "http://localhost:4000/login",
       {
         username: LoginUserName,
         password: LoginPassword,
@@ -64,7 +69,7 @@ function Login() {
 
   const onSubmit = (data: FormValues) => {
     Axios.post(
-      "https://book-store-t1fe.onrender.com/register",
+      "http://localhost:4000/register",
       {
         data,
       },

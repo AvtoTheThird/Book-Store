@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import Header from "./Header";
+import Header from "../components/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
@@ -89,7 +89,7 @@ function CreateBook() {
       alert("შეავსეთ ყველა სავალდებულო ველი");
     } else {
       try {
-        axios.post("https://book-store-t1fe.onrender.com/createBook", BookData);
+        axios.post("http://localhost:4000/createBook", BookData);
         history("/Body");
       } catch (err: any) {
         if (err.response.status == 422) {
@@ -103,7 +103,7 @@ function CreateBook() {
   const history = useNavigate();
 
   axios
-    .get("https://book-store-t1fe.onrender.com/profile", {
+    .get("http://localhost:4000/profile", {
       withCredentials: true,
     })
     .then((res) => {

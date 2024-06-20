@@ -2,9 +2,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const jtw = require("jsonwebtoken");
+// const { escapeRegExp } = require("lodash");
+// const rateLimit = require("express-rate-limit");
+
 const { default: mongoose } = require("mongoose");
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "https://6665873928a7e0b32a46b3a6--subtle-bunny-2f1d4c.netlify.app" }));
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 const bcrypt = require("bcrypt");
@@ -54,6 +57,11 @@ app.post("/CreateBook", async (req, res) => {
   }
 });
 
+// const loginLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000,
+//   max: 5,
+//   message: "მივიღეთ ბევრი შესვლის მოთხოვნა თქვენი IP-დან. ცოტა ხანი შეისვენეთ",
+// });
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -131,14 +139,20 @@ app.delete("/deleteBook/:id", async (req, res) => {
 
 app.post("/search", async (req, res) => {
   const searchTerm = req.body.data;
-  console.log(searchTerm);
+
+  if (typeof searchTerm !== "string" || searchTerm.length > 100) {
+    return res.status(400).json({ error: "Invalid search term" });
+  }
+
+  // const sanitizedSearchTerm = escapeRegExp(searchTerm);
+
   try {
     const searchResults = await bookModel.aggregate([
       {
         $match: {
           $or: [
-            { name: { $regex: searchTerm, $options: "i" } },
-            { author: { $regex: searchTerm, $options: "i" } },
+            { name: { $regex: sanitizedSearchTerm, $options: "i" } },
+            { author: { $regex: sanitizedSearchTerm, $options: "i" } },
           ],
         },
       },

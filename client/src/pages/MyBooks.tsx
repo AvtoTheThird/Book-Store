@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import BookEditDelete from "./BookEditDelete";
 import Axios from "axios";
@@ -7,7 +7,7 @@ function MyBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    Axios.get("https://book-store-t1fe.onrender.com/usersBooks", {
+    Axios.get("http://localhost:4000/usersBooks", {
       withCredentials: true,
     }).then((res) => {
       setBooks(res.data);

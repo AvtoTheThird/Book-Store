@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 
 function BookDetails() {

@@ -1,21 +1,18 @@
 import { useLocation } from "react-router-dom";
-import Header from "./Header";
+import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import Book from "./Book";
+import Book from "../components/Book";
 
 function SearchResults() {
   const location = useLocation();
   const data = location.state.search;
   useEffect(() => {
-    Axios.post("https://book-store-t1fe.onrender.com/search", { data }).then(
-      (res) => {
-        setbooks(res.data);
-      }
-    );
+    Axios.post("http://localhost:4000/search", { data }).then((res) => {
+      setbooks(res.data);
+    });
   }, []);
   const [books, setbooks] = useState<any[]>([]);
-  //   console.log(data);
 
   return (
     <div>
