@@ -15,9 +15,10 @@ function Body() {
   const [books, setBooks] = useState<any[]>([]);
 
   useEffect(() => {
+    // cashedBooks.length > 0 ? setBooks(cashedBooks) : setBooks([]);
     setBooks(cashedBooks);
-  }, []);
-  console.log(cashedBooks);
+  }, [cashedBooks]);
+  // console.log(books);
   const pages = new Array(numberOfPages).fill(null).map((i) => i);
 
   return (

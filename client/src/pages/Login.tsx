@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 type FormValues = {
   username: string;
   password: string;
-
   phone: string;
 };
 
@@ -35,23 +34,34 @@ function Login() {
   const [LoginPassword, setLoginPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  function loginFunc() {
-    Axios.post(
-      "http://localhost:4000/login",
-      {
-        username: LoginUserName,
-        password: LoginPassword,
-      },
-      { withCredentials: true }
-    ).then((res) => {
-      if (res.data == "ok") {
+  const loginFunc = async () => {
+    try {
+      const res = await Axios.post(
+        "http://localhost:4000/login",
+        {
+          username: LoginUserName,
+          password: LoginPassword,
+        },
+        { withCredentials: true }
+      );
+
+      if (res.data === "ok") {
         setRedirect(true);
-      } else if (res.status == 400) {
-        alert("wrong credentials");
+        history("/Body");
+      } else {
+        alert("არასწორი ინფორმაცია");
       }
-    });
-    history("/Body");
-  }
+    } catch (error: any) {
+      if (error.response && error.response.status === 403) {
+        alert("არასწორი ინფორმაცია");
+      } else if (error.response && error.response.status === 429) {
+        alert("ზედმეტად ბევრი შესვლის მოთხოვნა");
+      } else {
+        console.error("Login error:", error);
+        alert("დაფიქსირდა შეცდომა. სცადეთ მოგვიანებით");
+      }
+    }
+  };
   const history = useNavigate();
 
   // history("/SearchResults", { state: { search } });

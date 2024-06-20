@@ -2,9 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const jtw = require("jsonwebtoken");
-// const { escapeRegExp } = require("lodash");
-// const rateLimit = require("express-rate-limit");
-
+const { escapeRegExp } = require("lodash");
+const rateLimit = require("express-rate-limit");
 const { default: mongoose } = require("mongoose");
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
@@ -13,7 +12,6 @@ app.use(cookieParser());
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 const secret = "1sd5g8as33d5we1gsd56sdf1";
-
 const UserModel = require("./models/User");
 const bookModel = require("./models/Book");
 mongoose.connect(
@@ -26,7 +24,6 @@ app.get("/test", (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const user = req.body.data;
-
     const newUser = await new UserModel({
       username: user.username,
       password: bcrypt.hashSync(user.password, salt),
@@ -57,28 +54,42 @@ app.post("/CreateBook", async (req, res) => {
   }
 });
 
-// const loginLimiter = rateLimit({
-//   windowMs: 15 * 60 * 1000,
-//   max: 5,
-//   message: "მივიღეთ ბევრი შესვლის მოთხოვნა თქვენი IP-დან. ცოტა ხანი შეისვენეთ",
-// });
-app.post("/login", async (req, res) => {
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message:
+    "მივიღეთ ბევრი შესვლის მოთხოვნა თქვენი IP მისამართიდან. ცოტა ხანი შეისვენეთ",
+});
+app.post("/login", loginLimiter, async (req, res) => {
+  const { username, password } = req.body;
+  // console.log(username, password);
   try {
-    const { username, password } = req.body;
     const userDoc = await UserModel.findOne({ username });
+
+    if (!userDoc) {
+      return res.status(403).json({ error: "Wrong credentials" });
+    }
+
     const passOK = bcrypt.compareSync(password, userDoc.password);
 
-    if (passOK) {
-      jtw.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
+    if (!passOK) {
+      return res.status(403).json({ error: "Wrong credentials" });
+    }
+
+    jtw.sign(
+      { username, id: userDoc._id },
+      secret,
+      { expiresIn: "1h" },
+      (err, token) => {
         if (err) throw err;
         res.cookie("token", token).json("ok");
-      });
-    } else res.status(400).json("wrong credentials");
+      }
+    );
   } catch (error) {
-    res.status(400).json(error);
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
-
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
 
@@ -144,7 +155,7 @@ app.post("/search", async (req, res) => {
     return res.status(400).json({ error: "Invalid search term" });
   }
 
-  // const sanitizedSearchTerm = escapeRegExp(searchTerm);
+  const sanitizedSearchTerm = escapeRegExp(searchTerm);
 
   try {
     const searchResults = await bookModel.aggregate([
