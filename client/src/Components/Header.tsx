@@ -10,16 +10,22 @@ function Header() {
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState("");
   useEffect(() => {
-    Axios.get("http://localhost:4000/profile", {
-      withCredentials: true,
-    }).then((res) => {
-      setUsername(res.data.username);
-    });
+    // Axios.get("http://localhost:4000/profile", {
+    //   withCredentials: true,
+    // }).then((res) => {
+    //   setUsername(res.data.username);
+    // });
+    const storedUsername = sessionStorage.getItem("username"); // Or localStorage.getItem('username')
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
   }, []);
   // console.log(search);
 
   function logout() {
     Axios.post("http://localhost:4000/logout", {}, { withCredentials: true });
+    sessionStorage.removeItem("username"); // Or localStorage.getItem('username')
+
     setUsername("");
   }
   function Search() {

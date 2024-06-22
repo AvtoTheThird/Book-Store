@@ -116,15 +116,26 @@ app.get("/getBooks", async (req, res) => {
   const total = await bookModel.countDocuments({});
   const posts = await bookModel
     .find({})
+    .populate("owner", "username")
     .limit(PAGE_SIZE)
     .skip(PAGE_SIZE * page);
+
   res.json({
     totalPages: Math.ceil(total / PAGE_SIZE),
     posts,
   });
-  // const books = await bookModel.find({});
-
-  // res.json(books);
+});
+app.post("/getBooksByID", async (req, res) => {
+  const id = req.body.owner._id;
+  try {
+    const foundBooks = await bookModel.find({ owner: id });
+    res.json(foundBooks);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+  // const foundBooks = await bookModel.find({ owner: id });
+  // res.json(foundBooks);
+  // res.json("okokok");
 });
 app.get("/usersBooks", async (req, res) => {
   const { token } = req.cookies;

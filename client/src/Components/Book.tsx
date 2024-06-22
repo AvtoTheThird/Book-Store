@@ -1,16 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Book(props: any) {
-  const history = useNavigate();
+  // const history = useNavigate();
   // const location = useLocation();
-  const goToDetails = () => {
-    history("/BookDetails", { state: { props } });
-  };
+  // const goToDetails = () => {
+  //   history("/BookDetails", { state: { props } });
+  // };
   // console.log(props);
 
   return (
     <div className="books">
-      <a onClick={() => goToDetails()}>
+      <Link to="/BookDetails" state={{ props }}>
+        {/* <a onClick={() => goToDetails()}> */}
         <div className="book">
           <p
             style={{
@@ -27,7 +28,8 @@ function Book(props: any) {
           <h3>{props.author}</h3>
           {props.price == "" ? null : <h1>{props.price}ლ</h1>}
         </div>
-      </a>
+      </Link>
+      {/* </a> */}
     </div>
   );
 }

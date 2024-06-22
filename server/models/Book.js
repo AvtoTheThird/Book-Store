@@ -6,7 +6,6 @@ const BookSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-
   image: { type: String, required: true },
 
   name: {

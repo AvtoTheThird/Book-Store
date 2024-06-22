@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function BookDetails() {
   const location = useLocation();
@@ -20,7 +20,13 @@ function BookDetails() {
         </div>
         <div style={{ paddingLeft: "5rem", padding: "1rem" }}>
           <h1>{data.name}</h1>
-          <h2 style={{ paddingBottom: "3rem" }}>{data.author}</h2>
+          <h2 style={{ paddingBottom: "2rem" }}>{data.author}</h2>
+          <p style={{ paddingBottom: "1rem" }}>
+            გამყიდველი:
+            <Link to="/UsersStore" state={{ owner: data.owner }}>
+              {data.owner.username}
+            </Link>
+          </p>
           <h3 style={{ paddingBottom: "1rem" }}>
             გარიგრბის ტიპი:{data.dealType}
           </h3>

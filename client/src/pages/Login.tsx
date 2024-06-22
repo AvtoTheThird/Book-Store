@@ -46,6 +46,12 @@ function Login() {
       );
 
       if (res.data === "ok") {
+        // console.log(JSON.parse(res.config.data).username);
+
+        sessionStorage.setItem(
+          "username",
+          JSON.parse(res.config.data).username
+        );
         setRedirect(true);
         history("/Body");
       } else {

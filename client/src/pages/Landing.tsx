@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Book from "../../fotos/Kids reading-amico.svg";
-
+import { Link } from "react-router-dom";
 function Landing() {
   return (
     <>
@@ -32,9 +32,12 @@ function Landing() {
             <p style={{ fontSize: "20px", fontWeight: "100" }}>
               ადვილად მოძებნე და შეიძინე წიგნები სხვა კითხვის მოყვარულებისგან
             </p>
-            <a href="/Body" className="button-86" role="button">
+            <Link to="/Body" className="button-86">
+              Let's Go
+            </Link>
+            {/* <a href="/Body" className="button-86" role="button">
               Let's Go{" "}
-            </a>
+            </a> */}
           </h1>
         </div>
         <div>
