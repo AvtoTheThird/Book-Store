@@ -6,7 +6,8 @@ import { bookContext } from "../components/Context";
 function Body() {
   const {
     cashedBooks,
-    numberOfPages,
+    // numberOfPages,
+    pages,
     gotoPrevious,
     gotoNext,
     changePageNumber,
@@ -19,7 +20,8 @@ function Body() {
     setBooks(cashedBooks);
   }, [cashedBooks]);
   // console.log(books);
-  const pages = new Array(numberOfPages).fill(null).map((i) => i);
+  // const pages = new Array(numberOfPages).fill(null).map((i) => i);
+  // console.log(pages);
 
   return (
     <>
@@ -43,7 +45,9 @@ function Body() {
       )}
 
       <div className="page-indexes">
-        <button className="stepper-button" onClick={gotoPrevious}></button>
+        <button className="stepper-button" onClick={gotoPrevious}>
+          {"<"}
+        </button>
         {pages.map((pageIndex) => (
           <button
             className="stepper-button"

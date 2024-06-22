@@ -2,10 +2,11 @@ import { createContext, useEffect, useState } from "react";
 
 const bookContext = createContext({
   cashedBooks: [],
-  numberOfPages: 0,
+  // numberOfPages: 0,
+  pages: [],
   gotoNext: () => {},
   gotoPrevious: () => {},
-  changePageNumber: (pageIndex: any) => {},
+  changePageNumber: (pageIndex: number) => {},
 });
 const BookProvider = ({ children }: { children: React.ReactNode }) => {
   const [cashedBooks, setCashedBooks] = useState<any>([]);
@@ -19,11 +20,13 @@ const BookProvider = ({ children }: { children: React.ReactNode }) => {
         setCashedBooks(posts);
         setNumberOfPages(totalPages);
       });
-  }, []);
+  }, [pageNumber]);
   // console.log(cashedBooks);
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
   };
+  const pages: any = new Array(numberOfPages).fill(null).map((_, i) => i);
+  // console.log(pages);
 
   const gotoNext = () => {
     setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
@@ -35,7 +38,8 @@ const BookProvider = ({ children }: { children: React.ReactNode }) => {
     <bookContext.Provider
       value={{
         cashedBooks,
-        numberOfPages,
+        // numberOfPages,
+        pages,
         gotoNext,
         gotoPrevious,
         changePageNumber,

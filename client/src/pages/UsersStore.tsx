@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Book from "../components/Book";
@@ -25,7 +25,7 @@ function UsersStore() {
       </div>
       {books.length > 0 ? (
         <div className="body">
-          {books.map((book) => {
+          {books.map((book: Object) => {
             return <Book {...book} />;
           })}
         </div>

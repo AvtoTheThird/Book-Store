@@ -5,7 +5,7 @@ function BookDetails() {
   const location = useLocation();
   // const id = location.state.id;
   const data = location.state.props;
-  console.log(data);
+  // console.log(data);
 
   return (
     <div>
