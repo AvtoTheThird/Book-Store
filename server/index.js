@@ -97,15 +97,14 @@ app.get("/getBooks", async (req, res) => {
   const total = await bookModel.countDocuments({});
   const posts = await bookModel
     .find({})
+    .populate("owner", "username")
     .limit(PAGE_SIZE)
     .skip(PAGE_SIZE * page);
+
   res.json({
     totalPages: Math.ceil(total / PAGE_SIZE),
     posts,
   });
-  // const books = await bookModel.find({});
-
-  // res.json(books);
 });
 app.get("/usersBooks", async (req, res) => {
   const { token } = req.cookies;
