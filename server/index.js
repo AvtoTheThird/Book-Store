@@ -106,6 +106,18 @@ app.get("/getBooks", async (req, res) => {
     posts,
   });
 });
+app.post("/getBooksByID", async (req, res) => {
+  const id = req.body.owner._id;
+  try {
+    const foundBooks = await bookModel.find({ owner: id });
+    res.json(foundBooks);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+  // const foundBooks = await bookModel.find({ owner: id });
+  // res.json(foundBooks);
+  // res.json("okokok");
+});
 app.get("/usersBooks", async (req, res) => {
   const { token } = req.cookies;
   jtw.verify(token, secret, {}, async (err, info) => {
