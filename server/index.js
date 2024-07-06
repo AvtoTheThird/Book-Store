@@ -4,7 +4,7 @@ const cors = require("cors");
 const jtw = require("jsonwebtoken");
 const { default: mongoose } = require("mongoose");
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "https://6665873928a7e0b32a46b3a6--subtle-bunny-2f1d4c.netlify.app" }));
+app.use(cors({ credentials: true, origin: "https://subtle-bunny-2f1d4c.netlify.app" }));
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 const bcrypt = require("bcrypt");
